@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anesthetic Monitoring Form</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    h1, h2 { margin-top: 2rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    .small-input { width: 4rem; }
+    .medium-input { width: 8rem; }
+    .large-input { width: 100%; }
+    textarea { width: 100%; height: 4rem; }
+    .checkbox-group { display: flex; gap: 1rem; }
+    button { padding: 0.75rem 1.5rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+  <h1>Sample Anesthetic Monitoring Form</h1>
+
+  <form name="anesthetic-monitor"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field">
+    <p style="display:none">
+      <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+    </p>
+    <input type="hidden" name="form-name" value="anesthetic-monitor" />
+
+    <!-- Patient & Case Info -->
+    <table>
+      <tr>
+        <th>Client ID:</th>
+        <td><input type="text" name="client_id" class="medium-input" /></td>
+        <th>Patient ID:</th>
+        <td><input type="text" name="patient_id" class="medium-input" /></td>
+      </tr>
+      <tr>
+        <th>Date:</th>
+        <td><input type="date" name="date" /></td>
+        <th>Species:</th>
+        <td><input type="text" name="species" class="medium-input" /></td>
+      </tr>
+      <tr>
+        <th>Breed:</th>
+        <td><input type="text" name="breed" class="medium-input" /></td>
+        <th>Veterinarian:</th>
+        <td><input type="text" name="veterinarian" class="medium-input" /></td>
+      </tr>
+      <tr>
+        <th>Age:</th>
+        <td><input type="text" name="age" class="small-input" /></td>
+        <th>Sex:</th>
+        <td><input type="text" name="sex" class="small-input" /></td>
+      </tr>
+      <tr>
+        <th>Vet Tech:</th>
+        <td><input type="text" name="vet_technician" class="medium-input" /></td>
+        <th>Weight:</th>
+        <td><input type="text" name="weight" class="small-input" /></td>
+      </tr>
+      <tr>
+        <th>Procedure:</th>
+        <td colspan="3"><input type="text" name="procedure" class="large-input" /></td>
+      </tr>
+      <tr>
+        <th>Pre-op BW:</th>
+        <td colspan="3">
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="preop_bw_yes" value="Yes" /> Yes</label>
+            <label><input type="checkbox" name="preop_bw_no" value="No" /> No</label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Pre-surgical Exam Notes:</th>
+        <td colspan="3"><textarea name="preop_notes"></textarea></td>
+      </tr>
+      <tr>
+        <th>Pre-op Status:</th>
+        <td><input type="text" name="preop_status" class="large-input" /></td>
+        <th>Post-op Status:</th>
+        <td><input type="text" name="postop_status" class="large-input" /></td>
+      </tr>
+    </table>
+
+    <!-- Intravenous Fluids -->
+    <h2>Intravenous Fluids</h2>
+    <table>
+      <tr>
+        <th>Catheter size:</th>
+        <td><input type="text" name="catheter_size" class="small-input" /></td>
+        <th>Location:</th>
+        <td><input type="text" name="location" class="medium-input" /></td>
+      </tr>
+      <tr>
+        <th>Fluid type:</th>
+        <td><input type="text" name="fluid_type" class="medium-input" /></td>
+        <th>Maint. rate (ml/hr):</th>
+        <td><input type="number" name="maintenance_rate" class="small-input" /></td>
+      </tr>
+      <tr>
+        <th>Surgery rate (ml/hr):</th>
+        <td><input type="number" name="surgery_rate" class="small-input" /></td>
+        <th>Total received (ml):</th>
+        <td><input type="number" name="total_received" class="small-input" /></td>
+      </tr>
+      <tr>
+        <th>Start fluids:</th>
+        <td><input type="time" name="start_fluids" /></td>
+        <th>End fluids:</th>
+        <td><input type="time" name="end_fluids" /></td>
+      </tr>
+    </table>
+
+    <!-- Drug Tables -->
+    <h2>Pre-Anesthetic Drugs</h2>
+    <table>
+      <thead>
+        <tr><th>Drug</th><th>Strength</th><th>Dose</th><th>Route</th><th>Time</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" name="pre_drug_name[]" /></td>
+          <td><input type="text" name="pre_drug_strength[]" /></td>
+          <td><input type="text" name="pre_drug_dose[]" /></td>
+          <td><input type="text" name="pre_drug_route[]" /></td>
+          <td><input type="time" name="pre_drug_time[]" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Anesthetic Induction</h2>
+    <table>
+      <thead>
+        <tr><th>Drug</th><th>Strength</th><th>Dose</th><th>Route</th><th>Time</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" name="induction_drug_name[]" /></td>
+          <td><input type="text" name="induction_drug_strength[]" /></td>
+          <td><input type="text" name="induction_drug_dose[]" /></td>
+          <td><input type="text" name="induction_drug_route[]" /></td>
+          <td><input type="time" name="induction_drug_time[]" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Anesthetic Maintenance</h2>
+    <table>
+      <tr>
+        <th>Agent used:</th>
+        <td><input type="text" name="maint_agent" /></td>
+        <th>Dose/conc.:</th>
+        <td><input type="text" name="maint_dose" /></td>
+      </tr>
+      <tr>
+        <th>Delivery method:</th>
+        <td><input type="text" name="delivery_method" /></td>
+        <th>ET Tube Size:</th>
+        <td><input type="text" name="et_tube_size" class="small-input" /></td>
+      </tr>
+      <tr>
+        <th>Cuffed:</th>
+        <td colspan="3">
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="cuffed_yes" value="Y" /> Y</label>
+            <label><input type="checkbox" name="cuffed_no" value="N" /> N</label>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <h2>Intra-operative Drugs</h2>
+    <table>
+      <thead>
+        <tr><th>Drug</th><th>Strength</th><th>Dose</th><th>Route</th><th>Time</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" name="intra_drug_name[]" /></td>
+          <td><input type="text" name="intra_drug_strength[]" /></td>
+          <td><input type="text" name="intra_drug_dose[]" /></td>
+          <td><input type="text" name="intra_drug_route[]" /></td>
+          <td><input type="time" name="intra_drug_time[]" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Post-operative Drugs</h2>
+    <table>
+      <thead>
+        <tr><th>Drug</th><th>Strength</th><th>Dose</th><th>Route</th><th>Time</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" name="post_drug_name[]" /></td>
+          <td><input type="text" name="post_drug_strength[]" /></td>
+          <td><input type="text" name="post_drug_dose[]" /></td>
+          <td><input type="text" name="post_drug_route[]" /></td>
+          <td><input type="time" name="post_drug_time[]" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Time-based Monitoring Grid -->
+    <h2>Time-based Monitoring</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th><th>ISO %</th><th>O₂</th><th>Temp</th><th>Pulse</th>
+          <th>RR</th><th>MM</th><th>CRT</th><th>BP</th><th>Other</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="time" name="mon_time[]" /></td>
+          <td><input type="text" name="mon_iso[]" class="small-input" /></td>
+          <td><input type="text" name="mon_o2[]" class="small-input" /></td>
+          <td><input type="text" name="mon_temp[]" class="small-input" /></td>
+          <td><input type="text" name="mon_pulse[]" class="small-input" /></td>
+          <td><input type="text" name="mon_rr[]" class="small-input" /></td>
+          <td><input type="text" name="mon_mm[]" class="small-input" /></td>
+          <td><input type="text" name="mon_crt[]" class="small-input" /></td>
+          <td><input type="text" name="mon_bp[]" class="small-input" /></td>
+          <td><input type="text" name="mon_other[]" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Surgical Notes & Timeline -->
+    <h2>Surgical Notes & Timeline</h2>
+    <table>
+      <tr>
+        <th>Start Anesthetic:</th>
+        <td><input type="time" name="start_anesthetic" /></td>
+        <th>End Anesthetic:</th>
+        <td><input type="time" name="end_anesthetic" /></td>
+      </tr>
+      <tr>
+        <th>Start Surgery:</th>
+        <td><input type="time" name="start_surgery" /></td>
+        <th>End Surgery:</th>
+        <td><input type="time" name="end_surgery" /></td>
+      </tr>
+    </table>
+
+    <button type="submit">Submit Monitoring Data</button>
+  </form>
+
+</body>
+</html>
